@@ -1,26 +1,29 @@
 // Next, React
 import { FC, useEffect, useState } from 'react';
 //import Link from 'next/link';
-
 // Wallet
 import { useWallet, useConnection } from '@solana/wallet-adapter-react';
-
 // Store
 import useUserSOLBalanceStore from '../../stores/useUserSOLBalanceStore';
-
 import IDL from '../../../idl.json';
 import * as anchor from '@project-serum/anchor';
-
 import { mintEditionTx, asyncTxs } from './utils';
 import { notify } from '../../utils/notifications';
-
 export const programId = new anchor.web3.PublicKey(IDL.metadata.address);
+
+const label1 = "Editions Left: ";
+const label2 = "Price: ";
+const img_001 = "https://arweave.net/ejqzdSe6s6NvVDEpHEjAOvsPnnbzVGy7ld-8cNtdPVY?ext=png";
+const t_001 = "The Wall";
+const p_001 = "240 Pixels";
+const s_001 = "0/222";
 
 const store = new anchor.web3.PublicKey(
   '7MWM9CjoD5SvRtVJ36TgZA3fh7qhDCT1J76nfEQ7TXFn',
 );
 
-export const HomeView: FC = ({}) => {
+
+export const HomeView: FC = ({ }) => {
   const wallet = useWallet(),
     { connection } = useConnection(),
     provider = new anchor.AnchorProvider(connection, wallet, {}),
@@ -57,12 +60,16 @@ export const HomeView: FC = ({}) => {
   }, [wallet.publicKey, connection, getUserSOLBalance]);
 
   return (
-    <div className="md:hero mx-auto p-4">
-      <div className="md:hero-content flex flex-col">
-        <h1 className="text-center text-5xl md:pl-12 font-bold text-white]">
-          Suns Editions
-        </h1>
+    <div className="mx-auto p-4">
 
+      <div className="md:hero-content text-center flex flex-col">
+
+        <h2 className="text-center text-2xl font-regular text-primary]">
+          {t_001}
+        </h2>
+        <div className="legend text-1xl font-regular text-secondary">
+          <span>{label1}{s_001}</span>&nbsp;|&nbsp;<span>{label2}{p_001}</span></div>
+        <div className="edition img flex flex-col"><img className='img' src={img_001}></img></div>
         {wallet.publicKey && storeData && (
           <button
             onClick={async () => {

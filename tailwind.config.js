@@ -16,23 +16,23 @@ module.exports = {
       {
         'dark': {                          /* your theme name */
           fontFamily: {
-            display: ['PT Mono, monospace'],
-            body: ['Inter, sans-serif'],
+            display: ['Roboto Mono'],
+            body: ['Roboto Mono'],
           },
-          'primary': '#2a2a2a',           /* Primary color */
-          'primary-focus': '#9945FF',     /* Primary color - focused */
-          'primary-content': '#fff9ea',   /* Foreground content color to use on primary color */
+          'primary': '#72b6cf',           /* Primary color */
+          'primary-focus': '#72b6cf',     /* Primary color - focused */
+          'primary-content': 'rgb(32, 39, 32)',   /* Foreground content color to use on primary color */
 
-          'secondary': '#f6d860',         /* Secondary color */
-          'secondary-focus': '#f3cc30',   /* Secondary color - focused */
-          'secondary-content': '#fff9ea', /* Foreground content color to use on secondary color */
+          'secondary': '#fbb954',         /* Secondary color */
+          'secondary-focus': '#fbb954',   /* Secondary color - focused */
+          'secondary-content': '#fbb954', /* Foreground content color to use on secondary color */
 
-          'accent': '#33a382',            /* Accent color */
-          'accent-focus': '#2aa79b',      /* Accent color - focused */
-          'accent-content': '#fff9ea',    /* Foreground content color to use on accent color */
+          'accent': '#fbb954',            /* Accent color */
+          'accent-focus': '#fbb954',      /* Accent color - focused */
+          'accent-content': '#fbb954',    /* Foreground content color to use on accent color */
 
-          'neutral': '#2b2b2b',           /* Neutral color */
-          'neutral-focus': '#2a2e37',     /* Neutral color - focused */
+          'neutral': '#fbb954',           /* Neutral color */
+          'neutral-focus': '#fbb954',     /* Neutral color - focused */
           'neutral-content': '#fff9ea',   /* Foreground content color to use on neutral color */
 
           'base-100': '#181818',          /* Base color of page, used for blank backgrounds */
