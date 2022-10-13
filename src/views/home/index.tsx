@@ -18,9 +18,7 @@ const img_001 =
 const t_001 = 'The Wall';
 const p_001 = '240 Pixels';
 
-const store = new anchor.web3.PublicKey(
-  '7MWM9CjoD5SvRtVJ36TgZA3fh7qhDCT1J76nfEQ7TXFn',
-);
+const store = new anchor.web3.PublicKey(process.env.STORE);
 
 export const HomeView: FC = ({}) => {
   const wallet = useWallet(),
@@ -30,15 +28,9 @@ export const HomeView: FC = ({}) => {
     balance = useUserSOLBalanceStore((s) => s.balance),
     { getUserSOLBalance } = useUserSOLBalanceStore(),
     [listing, setListing] = useState({
-      mint: new anchor.web3.PublicKey(
-        '4hVL9JjZMm3aZs7JUWmSrmjHeyRmrYQcrzcdWdRDNPQ6',
-      ),
-      token: new anchor.web3.PublicKey(
-        '4fZbkEYicCJxzZug5Fx6q27YHQ7EthLKpUqo8ZcjVYNj',
-      ),
-      currency: new anchor.web3.PublicKey(
-        'So11111111111111111111111111111111111111112',
-      ),
+      mint: new anchor.web3.PublicKey(process.env.MINT),
+      token: new anchor.web3.PublicKey(process.env.TOKEN),
+      currency: new anchor.web3.PublicKey(process.env.CURRENCY),
     }),
     [clicked, setClicked] = useState(false),
     [sold, setSold] = useState(0),
@@ -94,7 +86,7 @@ export const HomeView: FC = ({}) => {
               }
               setClicked(true);
 
-              const edition_try = 0 + Math.floor(0 / 244);
+              const edition_try = Math.floor(storeData.listings[0].sold / 244);
 
               const txs = await mintEditionTx(
                 {
@@ -104,7 +96,7 @@ export const HomeView: FC = ({}) => {
                     ),
                   },
                   program,
-                  store_bump: 255,
+                  store_bump: process.env.STORE_BUMP,
                   store,
                 },
                 listing,
