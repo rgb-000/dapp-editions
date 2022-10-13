@@ -42,20 +42,12 @@ export const HomeView: FC = ({}) => {
     }),
     [clicked, setClicked] = useState(false),
     [sold, setSold] = useState(0),
-    [storeData, setStoreData] = useState();
+    [storeData, setStoreData] = useState({ listings: [{ sold: 0 }] });
 
   useEffect(() => {
     (async () => {
-      let info = await program.account.store.fetch(store);
-      setSold(info.listings[0].sold);
-      let a = setInterval(async () => {
-        let info = await program.account.listing.fetch(store);
-        setSold(info.listings[0].sold);
-      }, 15000);
-
-      return () => {
-        clearInterval(a);
-      };
+      let store_data = await program.account.store.fetch(store);
+      setStoreData(store_data);
     })();
   }, []);
 
@@ -83,7 +75,7 @@ export const HomeView: FC = ({}) => {
         <div className="legend text-1xl font-regular text-secondary">
           <span>
             {label1}
-            {sold}/222
+            {storeData.listings[0].sold}/222
           </span>
           &nbsp;|&nbsp;
           <span>
@@ -94,7 +86,7 @@ export const HomeView: FC = ({}) => {
         <div className="edition img flex flex-col">
           <img className="img" src={img_001}></img>
         </div>
-        {wallet.publicKey && storeData && (
+        {wallet.publicKey && (
           <button
             onClick={async () => {
               if (clicked) {
@@ -102,8 +94,7 @@ export const HomeView: FC = ({}) => {
               }
               setClicked(true);
 
-              const edition_try =
-                0 + Math.floor(storeData.listings[0].sold / 244);
+              const edition_try = 0 + Math.floor(0 / 244);
 
               const txs = await mintEditionTx(
                 {
