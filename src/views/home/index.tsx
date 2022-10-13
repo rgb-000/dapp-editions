@@ -11,19 +11,18 @@ import { mintEditionTx, asyncTxs } from './utils';
 import { notify } from '../../utils/notifications';
 export const programId = new anchor.web3.PublicKey(IDL.metadata.address);
 
-const label1 = "Editions Left: ";
-const label2 = "Price: ";
-const img_001 = "https://arweave.net/ejqzdSe6s6NvVDEpHEjAOvsPnnbzVGy7ld-8cNtdPVY?ext=png";
-const t_001 = "The Wall";
-const p_001 = "240 Pixels";
-const s_001 = "0/222";
+const label1 = 'Editions Left: ';
+const label2 = 'Price: ';
+const img_001 =
+  'https://arweave.net/ejqzdSe6s6NvVDEpHEjAOvsPnnbzVGy7ld-8cNtdPVY?ext=png';
+const t_001 = 'The Wall';
+const p_001 = '240 Pixels';
 
 const store = new anchor.web3.PublicKey(
   '7MWM9CjoD5SvRtVJ36TgZA3fh7qhDCT1J76nfEQ7TXFn',
 );
 
-
-export const HomeView: FC = ({ }) => {
+export const HomeView: FC = ({}) => {
   const wallet = useWallet(),
     { connection } = useConnection(),
     provider = new anchor.AnchorProvider(connection, wallet, {}),
@@ -42,7 +41,23 @@ export const HomeView: FC = ({ }) => {
       ),
     }),
     [clicked, setClicked] = useState(false),
+    [sold, setSold] = useState(0),
     [storeData, setStoreData] = useState();
+
+  useEffect(() => {
+    (async () => {
+      let info = await program.account.store.fetch(store);
+      setSold(info.listings[0].sold);
+      let a = setInterval(async () => {
+        let info = await program.account.listing.fetch(store);
+        setSold(info.listings[0].sold);
+      }, 15000);
+
+      return () => {
+        clearInterval(a);
+      };
+    })();
+  }, []);
 
   useEffect(() => {
     if (wallet.publicKey) {
@@ -61,15 +76,24 @@ export const HomeView: FC = ({ }) => {
 
   return (
     <div className="mx-auto p-4">
-
       <div className="md:hero-content text-center flex flex-col">
-
         <h2 className="text-center text-2xl font-regular text-primary]">
           {t_001}
         </h2>
         <div className="legend text-1xl font-regular text-secondary">
-          <span>{label1}{s_001}</span>&nbsp;|&nbsp;<span>{label2}{p_001}</span></div>
-        <div className="edition img flex flex-col"><img className='img' src={img_001}></img></div>
+          <span>
+            {label1}
+            {sold}/222
+          </span>
+          &nbsp;|&nbsp;
+          <span>
+            {label2}
+            {p_001}
+          </span>
+        </div>
+        <div className="edition img flex flex-col">
+          <img className="img" src={img_001}></img>
+        </div>
         {wallet.publicKey && storeData && (
           <button
             onClick={async () => {
