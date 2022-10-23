@@ -18,6 +18,10 @@
 # misc
 .DS_Store
 *.pem
+yarn.lock
+package-lock.json
+.gitignore
+next.config.js
 
 # debug
 npm-debug.log*
@@ -29,7 +33,6 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
-next.config.js
 
 # vercel
 .vercel
