@@ -25,15 +25,13 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    RPC: '',
+    RPC: 'https://api.devnet.solana.com ',
     STORE: '4BDFZHQLNKvtpkqu2ZCCfS9P5DSRu4jAVjG14dBxZG1Q',
-    STORE_BUMP: 255,
-    MINT: 'H5NjdhE7s6duSZ8VezeJCaXWoDv5FWseNtPHzqLAZfrK',
-    TOKEN: '5LwaDXLUv1FDeQANTsyLggSMufEKo9xcbiVXNP3HJ1Y9',
+    OWNER: 'rgbxqdf7E3WJEwPHBnuwtDkgQ9AEghMYMC2pYdDxnkt',
+    MINT: 'AdqRLAQtRmF2jwTcGQHaoaq6nshiLhBLfuEgQKP6RKqK',
+    TOKEN: '9rNsTEajMdya6cJ31eMgLzDbhJMur5fvTdAbz8TxTZ3m',
     CURRENCY: 'So11111111111111111111111111111111111111112',
   },
 };
 
 module.exports = nextConfig;
-
-

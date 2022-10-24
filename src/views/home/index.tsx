@@ -86,21 +86,29 @@ export const HomeView: FC = ({}) => {
               }
               setClicked(true);
 
-              const edition_try = Math.floor(storeData.listings[0].sold / 244);
+              const edition_try = Math.floor(storeData.listings[0].sold / 244),
+                owner = new anchor.web3.PublicKey(process.env.OWNER),
+                [store, store_bump] =
+                  anchor.utils.publicKey.findProgramAddressSync(
+                    [owner.toBytes(), Buffer.from('store')],
+                    programId,
+                  );
+
+              const index = storeData.listings.findIndex(
+                (e) => e.mint.toBase58() === process.env.MINT,
+              );
 
               const txs = await mintEditionTx(
                 {
                   store_data: {
-                    owner: new anchor.web3.PublicKey(
-                      'VLawmZTgLAbdeqrU579ohsdey9H1h3Mi1UeUJpg2mQB',
-                    ),
+                    owner,
                   },
                   program,
-                  store_bump: process.env.STORE_BUMP,
+                  store_bump,
                   store,
                 },
                 listing,
-                0,
+                index,
                 edition_try,
                 1,
                 setClicked,
