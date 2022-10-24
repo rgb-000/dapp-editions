@@ -33,6 +33,7 @@ export const HomeView: FC = ({}) => {
       currency: new anchor.web3.PublicKey(process.env.CURRENCY),
     }),
     [clicked, setClicked] = useState(false),
+    [index, setIndex] = useState(0),
     [sold, setSold] = useState(0),
     [storeData, setStoreData] = useState({ listings: [{ sold: 0 }] });
 
@@ -40,6 +41,10 @@ export const HomeView: FC = ({}) => {
     (async () => {
       let store_data = await program.account.store.fetch(store);
       setStoreData(store_data);
+      const index = store_data.listings.findIndex(
+        (e) => e.mint.toBase58() === process.env.MINT,
+      );
+      setIndex(index);
     })();
   }, []);
 
@@ -67,7 +72,7 @@ export const HomeView: FC = ({}) => {
         <div className="legend text-1xl font-regular text-secondary">
           <span>
             {label1}
-            {storeData.listings[0].sold}/222
+            {storeData.listings[index].sold}/222
           </span>
           &nbsp;|&nbsp;
           <span>
@@ -93,10 +98,6 @@ export const HomeView: FC = ({}) => {
                     [owner.toBytes(), Buffer.from('store')],
                     programId,
                   );
-
-              const index = storeData.listings.findIndex(
-                (e) => e.mint.toBase58() === process.env.MINT,
-              );
 
               const txs = await mintEditionTx(
                 {
