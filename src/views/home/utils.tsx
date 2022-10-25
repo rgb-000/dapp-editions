@@ -16,23 +16,27 @@ export const associatedTokenProgram = anchor.utils.token.ASSOCIATED_PROGRAM_ID;
 export const tokenProgram = anchor.utils.token.TOKEN_PROGRAM_ID;
 
 export async function asyncTxs(
-  raw_txs: [anchor.web3.Transaction[], any[]],
+  txs_and_signers: [anchor.web3.Transaction[], any[]],
   wallet: any,
   connection: any,
 ) {
   const rbh = (await connection.getRecentBlockhash()).blockhash;
-  for (let i = 0, l = raw_txs[0].length; i < l; i++) {
-    const [tx, signers] = [raw_txs[0][i], raw_txs[1][i]];
+
+  const [raw_txs, signers] = txs_and_signers;
+  for (let i = 0, l = raw_txs.length; i < l; i++) {
+    const tx = raw_txs[i],
+      signer = signers[i];
     tx.setSigners(wallet.publicKey);
 
     tx.recentBlockhash = rbh;
     tx.feePayer = wallet.publicKey;
 
-    for (let j = 0, l2 = signers.length; j < l2; j++) {
-      tx.sign(signers[j]);
+    for (let j = 0, l2 = signer.length; j < l2; j++) {
+      tx.sign(signer[j]);
     }
   }
-  const signed_txs = await wallet.signAllTransactions(raw_txs[0]);
+
+  const signed_txs = await wallet.signAllTransactions(raw_txs);
 
   const promises = signed_txs.map((e: any) => {
     return anchor.web3.sendAndConfirmRawTransaction(connection, e.serialize(), {
@@ -44,7 +48,7 @@ export async function asyncTxs(
   return Promise.all(promises).catch((e) => {
     let error = `Error occurred. ${e}`;
 
-    if (elogs !== undefined) {
+    if (e.logs !== undefined) {
       error = e.logs[e.logs.length - 3].split(' ').splice(2).join(' ');
       if (error.indexOf('0x1') > -1) {
         error = 'Insufficient funds.';
@@ -63,7 +67,7 @@ export async function mintEditionTx(
   mints: number,
   cb: any,
   wallet: any,
-) {
+): Promise<[anchor.web3.Transaction[], any[]]> {
   const master_token = listing.token,
     master_mint = listing.mint,
     master_meta = anchor.utils.publicKey.findProgramAddressSync(
@@ -141,7 +145,7 @@ export async function mintEditionTx(
       associatedTokenProgram,
     )[0];
 
-  let ret = [[], []];
+  let ret: [anchor.web3.Transaction[], any[]] = [[], []];
 
   for (let i = 0; i < mints; i++) {
     const newMint = anchor.web3.Keypair.generate(),

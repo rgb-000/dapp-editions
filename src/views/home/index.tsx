@@ -24,7 +24,7 @@ export const HomeView: FC = ({}) => {
   const wallet = useWallet(),
     { connection } = useConnection(),
     provider = new anchor.AnchorProvider(connection, wallet, {}),
-    program = new anchor.Program(IDL, programId, provider),
+    program = new anchor.Program(IDL as anchor.Idl, programId, provider),
     balance = useUserSOLBalanceStore((s) => s.balance),
     { getUserSOLBalance } = useUserSOLBalanceStore(),
     [listing, setListing] = useState({
@@ -35,12 +35,13 @@ export const HomeView: FC = ({}) => {
     [clicked, setClicked] = useState(false),
     [index, setIndex] = useState(0),
     [sold, setSold] = useState(0),
-    [storeData, setStoreData] = useState({ listings: [{ sold: 0 }] });
+    [storeData, setStoreData] = useState<any>({ listings: [{ sold: 0 }] });
 
   useEffect(() => {
     (async () => {
       let store_data = await program.account.store.fetch(store);
       setStoreData(store_data);
+      //@ts-ignore
       const index = store_data.listings.findIndex(
         (e) => e.mint.toBase58() === process.env.MINT,
       );
@@ -54,6 +55,11 @@ export const HomeView: FC = ({}) => {
         (async () => {
           let store_data = await program.account.store.fetch(store);
           setStoreData(store_data);
+          //@ts-ignore
+          const index = store_data.listings.findIndex(
+            (e) => e.mint.toBase58() === process.env.MINT,
+          );
+          setIndex(index);
         })();
       }, 10000);
 
