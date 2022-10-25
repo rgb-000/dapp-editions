@@ -11,11 +11,10 @@ import { mintEditionTx, asyncTxs } from './utils';
 import { notify } from '../../utils/notifications';
 export const programId = new anchor.web3.PublicKey(IDL.metadata.address);
 
-const label1 = 'Editions Left: ';
+const label1 = 'Editions Minted: ';
 const label2 = 'Price: ';
 const img_001 =
   'https://arweave.net/ejqzdSe6s6NvVDEpHEjAOvsPnnbzVGy7ld-8cNtdPVY?ext=png';
-const t_001 = 'The Wall';
 const p_001 = '240 Pixels';
 
 const store = new anchor.web3.PublicKey(process.env.STORE);
@@ -73,12 +72,12 @@ export const HomeView: FC = ({}) => {
     <div className="mx-auto p-4">
       <div className="md:hero-content text-center flex flex-col">
         <h2 className="text-center text-2xl font-regular text-primary]">
-          {t_001}
+        {storeData.listings[index].name}
         </h2>
         <div className="legend text-1xl font-regular text-secondary">
           <span>
             {label1}
-            {storeData.listings[index].sold}/222
+            {storeData.listings[index].sold} / {storeData.listings[index].total}
           </span>
           &nbsp;|&nbsp;
           <span>
