@@ -17,7 +17,7 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["index.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx", "src/utils/timer.js", "src/utils/timer.js", "src/utils/Timer.jsx", "src/utils/Timer.jsx", "src/utils/timer.js", "src/utils/timer.js"],
   "exclude": ["node_modules", ".next",],
   "ts-node": {
     "require": ["tsconfig-paths/register"],

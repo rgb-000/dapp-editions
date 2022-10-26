@@ -19,8 +19,8 @@ module.exports = {
             display: ['Roboto Mono'],
             body: ['Roboto Mono'],
           },
-          'primary': '#72b6cf',           /* Primary color */
-          'primary-focus': '#72b6cf',     /* Primary color - focused */
+          'primary': '#1f5484',           /* Primary color */
+          'primary-focus': '#1f5484',     /* Primary color - focused */
           'primary-content': 'rgb(32, 39, 32)',   /* Foreground content color to use on primary color */
 
           'secondary': '#fbb954',         /* Secondary color */
@@ -31,9 +31,9 @@ module.exports = {
           'accent-focus': '#fbb954',      /* Accent color - focused */
           'accent-content': '#fbb954',    /* Foreground content color to use on accent color */
 
-          'neutral': '#fbb954',           /* Neutral color */
-          'neutral-focus': '#fbb954',     /* Neutral color - focused */
-          'neutral-content': '#fff9ea',   /* Foreground content color to use on neutral color */
+          'neutral': '#1f5484',           /* Neutral color */
+          'neutral-focus': '#1f5484',     /* Neutral color - focused */
+          'neutral-content': '#1f5484',   /* Foreground content color to use on neutral color */
 
           'base-100': '#181818',          /* Base color of page, used for blank backgrounds */
           'base-200': '#35363a',          /* Base color, a little darker */

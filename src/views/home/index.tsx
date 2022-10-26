@@ -7,16 +7,13 @@ import { useWallet, useConnection } from '@solana/wallet-adapter-react';
 import useUserSOLBalanceStore from '../../stores/useUserSOLBalanceStore';
 import IDL from '../../../idl.json';
 import * as anchor from '@project-serum/anchor';
-import { mintEditionTx, asyncTxs } from './utils';
+import { mintEditionTx, asyncTxs} from './utils';
+import Timer from '../../utils/timer';
 import { notify } from '../../utils/notifications';
 export const programId = new anchor.web3.PublicKey(IDL.metadata.address);
 
-const label1 = 'Editions Minted: ';
-const label2 = 'Price: ';
-const img_001 =
-  'https://arweave.net/ejqzdSe6s6NvVDEpHEjAOvsPnnbzVGy7ld-8cNtdPVY?ext=png';
-const p_001 = '240 Pixels';
-
+const img_001 ='https://arweave.net/F0uL2tcNpvnalVUKb85DUIHlJ9pao5Xk-vB21cZqU7E';
+const price = process.env.PRICE;
 const store = new anchor.web3.PublicKey(process.env.STORE);
 
 export const HomeView: FC = ({}) => {
@@ -45,16 +42,17 @@ export const HomeView: FC = ({}) => {
         (e) => e.mint.toBase58() === process.env.MINT,
       );
       setIndex(index);
-    })();
+    })();   
   }, []);
 
+  
   useEffect(() => {
     if (wallet.publicKey) {
       let a = setInterval(() => {
         (async () => {
           let store_data = await program.account.store.fetch(store);
           setStoreData(store_data);
-          //@ts-ignore
+          //@ts-ignore      
           const index = store_data.listings.findIndex(
             (e) => e.mint.toBase58() === process.env.MINT,
           );
@@ -68,25 +66,22 @@ export const HomeView: FC = ({}) => {
     }
   }, [wallet.publicKey, connection, getUserSOLBalance]);
 
+ 
   return (
+    
     <div className="mx-auto p-4">
       <div className="md:hero-content text-center flex flex-col">
-        <h2 className="text-center text-2xl font-regular text-primary]">
+        <h2 className="text-center text-3xl font-regular text-secondary]">
         {storeData.listings[index].name}
         </h2>
         <div className="legend text-1xl font-regular text-secondary">
           <span>
-            {label1}
-            {storeData.listings[index].sold} / {storeData.listings[index].total}
-          </span>
-          &nbsp;|&nbsp;
-          <span>
-            {label2}
-            {p_001}
-          </span>
+            <i>Editions minted:</i> {storeData.listings[index].sold} <i>/</i> {storeData.listings[index].total}
+          </span> &nbsp;&nbsp;&nbsp;
+          <span><i>Price:</i> {price} <i>Pixels</i></span>
         </div>
         <div className="edition img flex flex-col">
-          <img className="img" src={img_001}></img>
+          <img className="img" src={img_001}></img><i><Timer/></i>
         </div>
         {wallet.publicKey && (
           <button
@@ -130,9 +125,9 @@ export const HomeView: FC = ({}) => {
 
               setClicked(false);
             }}
-            className="text-center bg-sky-300 px-4 py-2 rounded-sm text-black"
+            className="mint text-center text-1xl px-6 py-3 text-black"
           >
-            {clicked ? 'Minting...' : 'Mint'}
+            {clicked ? 'Cloning...' : 'MINT'}
           </button>
         )}
       </div>
