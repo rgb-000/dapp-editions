@@ -6,6 +6,7 @@ import { AppBar } from '../components/AppBar';
 import { ContentContainer } from '../components/ContentContainer';
 import { Footer } from '../components/Footer';
 import Notifications from '../components/Notification'
+import "../styles/globals.css";
 
 require('@solana/wallet-adapter-react-ui/styles.css');
 require('../styles/globals.css');
@@ -14,7 +15,8 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     return (
         <>
           <Head>
-            <title>Suns Cloning Machine</title>
+           <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"></link>
+            <title>Cloning Machine</title>
           </Head>
 
           <ContextProvider>
