@@ -16,7 +16,7 @@ export const AppBar: FC = props => {
       <div className="navbar flex bg-neutral text-neutral-content">
         <div className="navbar-start">
         <a href="https://sunsstudio.com"><img className='app-logo' src={logo}></img></a>  </div><h1 className="md:hero h-100 text-center text-3xl font-regular text-neutral mb-50">
-        Cloning Machine 1.0</h1>
+        Cloning Machine</h1>
       
 
 
