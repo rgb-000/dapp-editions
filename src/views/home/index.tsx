@@ -12,8 +12,6 @@ import Timer from '../../utils/timer';
 import { notify } from '../../utils/notifications';
 export const programId = new anchor.web3.PublicKey(IDL.metadata.address);
 
-const img_001 ='https://arweave.net/F0uL2tcNpvnalVUKb85DUIHlJ9pao5Xk-vB21cZqU7E';
-const price = process.env.PRICE;
 const store = new anchor.web3.PublicKey(process.env.STORE);
 export const HomeView: FC = ({}) => {
   const wallet = useWallet(),
@@ -30,6 +28,8 @@ export const HomeView: FC = ({}) => {
     [clicked, setClicked] = useState(false),
     [index, setIndex] = useState(0),
     [sold, setSold] = useState(0),
+    [total, setTotal] = useState(132),
+    [name, setName] = useState('Cobalt'),
     [storeData, setStoreData] = useState<any>({ listings: [{ sold: 0 }] });
 
   useEffect(() => {
@@ -64,25 +64,24 @@ export const HomeView: FC = ({}) => {
     }
   }, [wallet.publicKey, connection, getUserSOLBalance]);
 
-  const Name  = /*storeData.listings[index].name*/ "Cobalt Alien";
-  const Sold = /*storeData.listings[index].sold*/ 132; 
-  const Total = /*storeData.listings[index].total*/ 132;
-
+  const Sold = storeData.listings[index]?.sold || 'ø'; 
+  const Total = storeData.listings[index]?.total || 'ø';
+  if (Sold === Total) {var clone = 'Sold Out :('} else {var clone = 'Mint'};
   return (
     
     <div className="mx-auto p-4">
       <div className="md:hero-content text-center flex flex-col">
         <h2 className="text-center text-3xl font-regular text-secondary]">
-      {Name}
+        {process.env.NAME}
         </h2>
         <div className="legend text-1xl font-regular text-secondary">
           <span>
             <i>Editions minted:</i> {Sold}<i>/</i>{Total} 
           </span> &nbsp;&nbsp;&nbsp;
-          <span><i>Price:</i> {price} <i>Pixels</i></span>
+          <span><i>Price:</i> {process.env.PRICE} <i>Pixels</i></span>
         </div>
         <div className="edition img flex flex-col">
-          <img className="img" src={img_001}></img><i><Timer/></i>
+          <img className="img" src={process.env.IMG}></img><i><Timer/></i>
         </div>
         {wallet.publicKey && (
           <button
@@ -128,7 +127,7 @@ export const HomeView: FC = ({}) => {
             }}
             className="mint text-center text-1xl px-6 py-3 text-black"
           >
-            {clicked ? 'Cloning...' : 'SOLD OUT :('}
+            {clicked ? 'Cloning...' : clone}
           </button>
         )}
       </div>
