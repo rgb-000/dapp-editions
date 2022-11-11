@@ -11,7 +11,7 @@ const nextConfig = {
     TOKEN: 'BuanzYyAkBAupuQVwaSGZeZnTpbEQqqkcbTjBzQyGuSR',
     IMG: 'https://arweave.net/5a3SrXuR84eMihLo6bOUhuDS0hy5OF_t3uzwbB_3vsQ',
     NAME: 'The Wanderer',
-    START: 1668196800,
+    START: 1668283200,
     PRICE: 44
   },
 };

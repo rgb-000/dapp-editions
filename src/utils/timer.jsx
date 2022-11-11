@@ -22,19 +22,17 @@ function timer() {
     const isPositive = diffT >= 0;
     const absDiff = Math.abs(diffT);
     let remainder = absDiff;
-    const days = Math.floor(absDiff / 86400);
-    remainder = remainder % 86400;
     const hours = Math.floor(remainder / 3600);
     remainder = remainder % 3600;
     const minutes = Math.floor(remainder / 60);
     remainder = remainder % 60;
-    const result = `${days}D ${hours}H ${minutes}M ${remainder}S`;
+    const result = `${hours}H ${minutes}M ${remainder}S`;
 
     if (isPositive) {
-      return ``;
+      return `ENDED`;
     }
 
-    return `Starts in ${result}`;
+    return `Ends in ${result}`;
   };
 
   useEffect(() => {
