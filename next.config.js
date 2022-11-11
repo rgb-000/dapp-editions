@@ -3,7 +3,7 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    RPC: '',  
+    RPC: 'https://bold-weathered-dew.solana-mainnet.quiknode.pro/22437e18929d3bc81fb32e42a2979872e5191b43/',  
     STORE: '4BDFZHQLNKvtpkqu2ZCCfS9P5DSRu4jAVjG14dBxZG1Q',
     OWNER: 'rgbxqdf7E3WJEwPHBnuwtDkgQ9AEghMYMC2pYdDxnkt',
     CURRENCY: 'PXLSmSBWHU8yAqNof9Ry2LPsZxHSYB4xXsBaQWUmEzV',
