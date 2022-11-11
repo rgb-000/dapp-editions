@@ -7,12 +7,12 @@ const nextConfig = {
     STORE: '4BDFZHQLNKvtpkqu2ZCCfS9P5DSRu4jAVjG14dBxZG1Q',
     OWNER: 'rgbxqdf7E3WJEwPHBnuwtDkgQ9AEghMYMC2pYdDxnkt',
     CURRENCY: 'PXLSmSBWHU8yAqNof9Ry2LPsZxHSYB4xXsBaQWUmEzV',
-    MINT: '6p1bVbJPT9RvZtGUy6ownxrARwLVGQ1gMmJgYrVqjydY',
-    TOKEN: '3Wi32uwVkNtGP7GwzR8s9yCJ7vK9WfzyFxpp9VGV8srx',
-    IMG: 'https://arweave.net/8nEi_fkLwK6AWc97vPT3Z9no1BzprLoplHclhhMvIvI',
-    NAME: 'Argonath',
-    START: 1667847600,
-    PRICE: 240
+    MINT: '45QeXbJ3gL5WoAzUyVGXc7HZz5KoXD9K1RMnrJW9JVMQ',
+    TOKEN: 'BuanzYyAkBAupuQVwaSGZeZnTpbEQqqkcbTjBzQyGuSR',
+    IMG: 'https://arweave.net/5a3SrXuR84eMihLo6bOUhuDS0hy5OF_t3uzwbB_3vsQ',
+    NAME: 'The Wanderer',
+    START: 1668196800,
+    PRICE: 44
   },
 };
 

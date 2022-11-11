@@ -58,7 +58,7 @@ a {
 
 .md\:hero-content {
 background-color:  rgb(36, 44, 36) !important;
-max-width:1024px !important;
+max-width:/*1024px*/ 500px !important;
 min-height:620px;
 padding:50px;
 margin:40px auto;
@@ -75,7 +75,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,0.15),
 }
 
 .timer {
-  min-width: 500px;
+  min-width: 375px /*500px !!!!!!!!!!!!!! */;
   margin: auto;
 }
 
@@ -102,7 +102,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,0.15),
 
 .mint {
   background-color: #1f5484;
-  border-radius: 6px;;
+  border-radius: 6px;
+  margin-bottom: 30px;
   
 }
 
@@ -112,8 +113,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,0.15),
 
 .img {
   border-radius: 6px;
-  max-width:1000px;
-  margin: 10px;
+  max-width:375px /*500px !!!!!!!!!!!!!! */;
+  min-width: 375px;
+  margin-bottom: 20px;
   padding: 0 !important;
 } 
 
