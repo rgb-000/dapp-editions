@@ -64,7 +64,7 @@ export const HomeView: FC = ({}) => {
     }
   }, [wallet.publicKey, connection, getUserSOLBalance]);
 
-  const Sold = storeData.listings[index]?.sold || 0 ; 
+  const Sold = storeData.listings[index]?.sold || 244 ; 
   const Total = /*storeData.listings[index]?.total || 'ø'*/ '∞';
   if (Sold === Total) {var clone = 'Sold Out :('} else {var clone = 'Mint'};
   return (

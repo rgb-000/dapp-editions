@@ -29,7 +29,7 @@ function timer() {
     const result = `${hours}H ${minutes}M ${remainder}S`;
 
     if (isPositive) {
-      return `ENDED`;
+      return `PAUSED`;
     }
 
     return `Ends in ${result}`;
