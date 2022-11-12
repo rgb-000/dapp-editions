@@ -127,7 +127,7 @@ export const HomeView: FC = ({}) => {
             }}
             className="mint text-center text-1xl px-6 py-3 text-black"
           >
-            MINT PAUSED (WE WILL BACK SOON)
+            MINT PAUSED (WE WILL BE BACK SOON)
           </button>
         )}
       </div>
