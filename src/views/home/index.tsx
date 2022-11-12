@@ -28,8 +28,7 @@ export const HomeView: FC = ({}) => {
     [clicked, setClicked] = useState(false),
     [index, setIndex] = useState(0),
     [sold, setSold] = useState(0),
-    [total, setTotal] = useState(132),
-    [name, setName] = useState('Cobalt'),
+    [total, setTotal] = useState(0),
     [storeData, setStoreData] = useState<any>({ listings: [{ sold: 0 }] });
 
   useEffect(() => {
@@ -64,7 +63,7 @@ export const HomeView: FC = ({}) => {
     }
   }, [wallet.publicKey, connection, getUserSOLBalance]);
 
-  const Sold = storeData.listings[index]?.sold || 244 ; 
+  const Sold = storeData.listings[index]?.sold || 0 ; 
   const Total = /*storeData.listings[index]?.total || 'ø'*/ '∞';
   if (Sold === Total) {var clone = 'Sold Out :('} else {var clone = 'Mint'};
   return (
@@ -91,7 +90,7 @@ export const HomeView: FC = ({}) => {
               }
               setClicked(true);
 
-              const edition_try = Math.floor(storeData.listings[0].sold / 244),
+              const edition_try = Math.floor(storeData.listings[0].sold / 248),
                 owner = new anchor.web3.PublicKey(process.env.OWNER),
                 [store, store_bump] =
                   anchor.utils.publicKey.findProgramAddressSync(
@@ -127,7 +126,7 @@ export const HomeView: FC = ({}) => {
             }}
             className="mint text-center text-1xl px-6 py-3 text-black"
           >
-            MINT PAUSED (WE WILL BE BACK SOON)
+            {clicked ? 'Cloning...' : clone}
           </button>
         )}
       </div>
