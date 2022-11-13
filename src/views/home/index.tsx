@@ -28,7 +28,7 @@ export const HomeView: FC = ({}) => {
     [clicked, setClicked] = useState(false),
     [index, setIndex] = useState(0),
     [sold, setSold] = useState(0),
-    [total, setTotal] = useState(0),
+    [total, setTotal] = useState(),
     [storeData, setStoreData] = useState<any>({ listings: [{ sold: 0 }] });
 
   useEffect(() => {
@@ -63,8 +63,8 @@ export const HomeView: FC = ({}) => {
     }
   }, [wallet.publicKey, connection, getUserSOLBalance]);
 
-  const Sold = storeData.listings[index]?.sold || 0 ; 
-  const Total = /*storeData.listings[index]?.total || 'ø'*/ '∞';
+  const Sold = storeData.listings[index]?.sold || 561 ; 
+  const Total = /*storeData.listings[index]?.total || 'ø'∞*/ 561;
   if (Sold === Total) {var clone = 'Sold Out :('} else {var clone = 'Mint'};
   return (
     
