@@ -7,12 +7,12 @@ const nextConfig = {
     STORE: '4BDFZHQLNKvtpkqu2ZCCfS9P5DSRu4jAVjG14dBxZG1Q',
     OWNER: 'rgbxqdf7E3WJEwPHBnuwtDkgQ9AEghMYMC2pYdDxnkt',
     CURRENCY: 'PXLSmSBWHU8yAqNof9Ry2LPsZxHSYB4xXsBaQWUmEzV',
-    MINT: '45QeXbJ3gL5WoAzUyVGXc7HZz5KoXD9K1RMnrJW9JVMQ',
-    TOKEN: 'BuanzYyAkBAupuQVwaSGZeZnTpbEQqqkcbTjBzQyGuSR',
-    IMG: 'https://arweave.net/5a3SrXuR84eMihLo6bOUhuDS0hy5OF_t3uzwbB_3vsQ',
-    NAME: 'The Wanderer',
-    START: 1668340800,
-    PRICE: 44
+    MINT: '4RUkkFeLxJ9zchnZHN5oLWHUkSP6BkN4NXftSiJxCpzE',
+    TOKEN: 'FVCngRpHdQfVZ6SVfMsuFA69JCKL4m8ZmBFP7q9S8899',
+    IMG: 'https://arweave.net/AEa4U2xhfTr9A7yeo8iwbWPOhVQxe2EiwaLBtH6fQbU',
+    NAME: 'Kodama Forest',
+    START: 1670252400,
+    PRICE: 360
   },
 };
 
