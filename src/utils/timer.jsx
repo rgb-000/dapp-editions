@@ -29,10 +29,10 @@ function timer() {
     const result = `${hours}H ${minutes}M ${remainder}S`;
 
     if (isPositive) {
-      return `ENDED`;
+      return ``;
     }
 
-    return `Ends in ${result}`;
+    return `Starts in ${result}`;
   };
 
   useEffect(() => {
